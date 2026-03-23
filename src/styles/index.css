@@ -1,0 +1,359 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== BASE RESET ===== */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    image-rendering: pixelated;
+  }
+
+  body {
+    background: #0f0e17;
+    color: #fffffe;
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Retro scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0f0e17;
+    border-left: 2px solid #2e3a5e;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2de84a;
+    border: 2px solid #0f0e17;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00fff5;
+  }
+
+  ::selection {
+    background: rgba(45, 232, 74, 0.3);
+    color: #fffffe;
+  }
+}
+
+/* ===== COMPONENT STYLES ===== */
+@layer components {
+  /* Pixel border utility */
+  .pixel-border {
+    border: 3px solid #2de84a;
+    box-shadow: 
+      4px 4px 0px #000,
+      inset -2px -2px 0px rgba(0,0,0,0.3);
+  }
+
+  .pixel-border-cyan {
+    border: 3px solid #00fff5;
+    box-shadow:
+      4px 4px 0px #000,
+      inset -2px -2px 0px rgba(0,0,0,0.3);
+  }
+
+  .pixel-border-magenta {
+    border: 3px solid #ff2975;
+    box-shadow:
+      4px 4px 0px #000,
+      inset -2px -2px 0px rgba(0,0,0,0.3);
+  }
+
+  .pixel-border-yellow {
+    border: 3px solid #ffe66d;
+    box-shadow:
+      4px 4px 0px #000,
+      inset -2px -2px 0px rgba(0,0,0,0.3);
+  }
+
+  /* HP Bar (health bar style skill meter) */
+  .hp-bar-container {
+    background: #1a1932;
+    border: 2px solid #2e3a5e;
+    height: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hp-bar-fill {
+    height: 100%;
+    position: relative;
+    transition: width 1.5s ease-out;
+  }
+
+  .hp-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  }
+
+  /* Game dialogue box */
+  .dialogue-box {
+    background: #1a1932;
+    border: 4px solid #fffffe;
+    box-shadow: 
+      6px 6px 0px #000,
+      inset 0 0 0 2px #2e3a5e;
+    position: relative;
+  }
+
+  .dialogue-box::before {
+    content: '▶';
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    color: #ffe66d;
+    animation: blink 1s steps(2) infinite;
+    font-size: 14px;
+  }
+
+  /* Scanline overlay */
+  .scanline-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.06) 0px,
+      rgba(0, 0, 0, 0.06) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  /* Pixel button press effect */
+  .pixel-btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    background: #2de84a;
+    color: #0f0e17;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 
+      0 6px 0 #0a5c1a,
+      0 8px 8px rgba(0,0,0,0.4);
+    transition: all 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .pixel-btn:hover {
+    background: #3df85a;
+    box-shadow:
+      0 6px 0 #0a5c1a,
+      0 8px 8px rgba(0,0,0,0.4),
+      0 0 20px rgba(45,232,74,0.4);
+  }
+
+  .pixel-btn:active {
+    transform: translateY(4px);
+    box-shadow:
+      0 2px 0 #0a5c1a,
+      0 3px 4px rgba(0,0,0,0.3);
+  }
+
+  .pixel-btn-cyan {
+    background: #00fff5;
+    box-shadow:
+      0 6px 0 #005c57,
+      0 8px 8px rgba(0,0,0,0.4);
+  }
+
+  .pixel-btn-cyan:hover {
+    background: #33fff7;
+    box-shadow:
+      0 6px 0 #005c57,
+      0 8px 8px rgba(0,0,0,0.4),
+      0 0 20px rgba(0,255,245,0.4);
+  }
+
+  .pixel-btn-cyan:active {
+    transform: translateY(4px);
+    box-shadow:
+      0 2px 0 #005c57,
+      0 3px 4px rgba(0,0,0,0.3);
+  }
+
+  /* Card hover unlock effect */
+  .game-card {
+    background: #1a1932;
+    border: 3px solid #2e3a5e;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(45, 232, 74, 0.08),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .game-card:hover {
+    border-color: #2de84a;
+    box-shadow:
+      4px 4px 0px #000,
+      0 0 20px rgba(45,232,74,0.2);
+    transform: translateY(-4px);
+  }
+
+  .game-card:hover::before {
+    left: 100%;
+  }
+
+  /* Star animation for hero */
+  .pixel-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fffffe;
+    animation: twinkle var(--duration, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  /* Level badge */
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: #232946;
+    border: 2px solid #2de84a;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    color: #2de84a;
+    text-transform: uppercase;
+  }
+
+  /* Timeline styles */
+  .timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: repeating-linear-gradient(
+      to bottom,
+      #2de84a 0px,
+      #2de84a 8px,
+      transparent 8px,
+      transparent 16px
+    );
+  }
+
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: #2de84a;
+    border: 3px solid #0f0e17;
+    box-shadow: 0 0 10px rgba(45,232,74,0.5);
+    position: absolute;
+    left: 13px;
+    top: 6px;
+  }
+
+  /* Achievement badge shimmer */
+  .achievement-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .achievement-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(255,230,109,0.06) 50%,
+      transparent 60%
+    );
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { transform: translateX(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) rotate(45deg); }
+  }
+
+  /* Floating label for section */
+  .section-container {
+    min-height: 100vh;
+    padding: 100px 20px 60px;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .section-container {
+      padding: 80px 16px 40px;
+    }
+  }
+}
+
+/* ===== RAINBOW MODE (Konami Code Easter Egg) ===== */
+.rainbow-mode {
+  animation: rainbow-bg 3s linear infinite !important;
+}
+
+.rainbow-mode * {
+  transition: all 0.3s ease;
+}
+
+@keyframes rainbow-bg {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* ===== UTILITY ADDITIONS ===== */
+@layer utilities {
+  .text-shadow-green {
+    text-shadow: 0 0 10px rgba(45,232,74,0.6), 0 0 30px rgba(45,232,74,0.3);
+  }
+
+  .text-shadow-cyan {
+    text-shadow: 0 0 10px rgba(0,255,245,0.6), 0 0 30px rgba(0,255,245,0.3);
+  }
+
+  .text-shadow-magenta {
+    text-shadow: 0 0 10px rgba(255,41,117,0.6), 0 0 30px rgba(255,41,117,0.3);
+  }
+
+  .text-shadow-yellow {
+    text-shadow: 0 0 10px rgba(255,230,109,0.6), 0 0 30px rgba(255,230,109,0.3);
+  }
+}
