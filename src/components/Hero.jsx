@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { personalInfo } from "../data/portfolioData";
 
 /**
@@ -6,6 +6,40 @@ import { personalInfo } from "../data/portfolioData";
  */
 export default function Hero() {
   const canvasRef = useRef(null);
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+
+  const titles = useMemo(() => {
+    const list = Array.isArray(personalInfo.titles) ? personalInfo.titles : [];
+    const fallback = personalInfo.title ? [personalInfo.title] : [];
+    return (list.length ? list : fallback).filter(Boolean);
+  }, []);
+
+  const maxTitleChars = useMemo(() => {
+    return titles.reduce((maxLen, t) => Math.max(maxLen, String(t).length), 0);
+  }, [titles]);
+
+  useEffect(() => {
+    if (titles.length <= 1) return;
+
+    const intervalMs = 2200;
+    const fadeMs = 250;
+    let timeoutId;
+
+    const intervalId = setInterval(() => {
+      setIsFading(true);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setTitleIndex((prev) => (prev + 1) % titles.length);
+        setIsFading(false);
+      }, fadeMs);
+    }, intervalMs);
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, [titles]);
 
   // Generate stars once
   const stars = useMemo(() => {
@@ -77,8 +111,16 @@ export default function Hero() {
         {/* Role */}
         <div className="flex items-center justify-center gap-3 mb-6">
           <span className="w-6 h-[2px] bg-retro-green"></span>
-          <p className="font-retro text-2xl md:text-3xl text-retro-green text-shadow-green tracking-wider">
-            {personalInfo.title}
+          <p
+            className="font-retro text-2xl md:text-3xl text-retro-green text-shadow-green tracking-wider transition-opacity duration-300 inline-block"
+            style={{
+              opacity: isFading ? 0 : 1,
+              minWidth: maxTitleChars ? `${maxTitleChars}ch` : undefined,
+            }}
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {titles[titleIndex]}
           </p>
           <span className="w-6 h-[2px] bg-retro-green"></span>
         </div>

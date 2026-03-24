@@ -7,6 +7,7 @@
 export const personalInfo = {
   name: "Aayushmaan Jaiswal",
   title: "Full Stack Developer",
+  titles: ["Full Stack Developer", "Data Analyst", "Software Developer"],
   email: "aayushmaan.jaiswal0308@gmail.com",
   phone: "+91-8736857339",
   github: "https://github.com/aayushmaan",
