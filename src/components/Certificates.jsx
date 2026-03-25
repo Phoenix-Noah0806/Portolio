@@ -7,7 +7,7 @@ import { certificates, achievements } from "../data/portfolioData";
  */
 export default function Certificates() {
   return (
-    <section id="certificates" className="section-container bg-retro-bg-light/30">
+    <section id="certificates" className="section-container retro-reveal bg-retro-bg-light/30">
       <div className="max-w-5xl mx-auto">
         <SectionHeader level="04" title="Certificates" color="magenta" />
 

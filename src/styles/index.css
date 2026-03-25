@@ -138,6 +138,98 @@
       transparent 1px,
       transparent 3px
     );
+    opacity: 0.32;
+    animation: crt-flicker 6.5s steps(2) infinite;
+  }
+
+  @keyframes crt-flicker {
+    0%, 100% { opacity: 0.28; }
+    10% { opacity: 0.36; }
+    20% { opacity: 0.30; }
+    35% { opacity: 0.38; }
+    50% { opacity: 0.31; }
+    65% { opacity: 0.40; }
+    80% { opacity: 0.30; }
+    90% { opacity: 0.35; }
+  }
+
+  /* Reveal-on-scroll (professional, subtle) */
+  .js-reveal .retro-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 450ms ease, transform 550ms ease;
+  }
+
+  .js-reveal .retro-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .js-reveal .retro-reveal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(0, 255, 245, 0.06) 45%,
+      rgba(255, 255, 255, 0.04) 65%,
+      transparent 100%
+    );
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+
+  .js-reveal .retro-reveal.is-revealed::before {
+    opacity: 1;
+    animation: pixel-wipe 650ms steps(12) both;
+  }
+
+  @keyframes pixel-wipe {
+    0% { transform: translateX(-120%); opacity: 0.85; }
+    85% { opacity: 0.35; }
+    100% { transform: translateX(120%); opacity: 0; }
+  }
+
+  /* Micro-interactions */
+  .level-badge-anim {
+    transition: transform 180ms ease, filter 180ms ease;
+    will-change: transform;
+  }
+
+  .group:hover .level-badge-anim {
+    transform: translateY(-1px) scale(1.02);
+    filter: drop-shadow(0 0 12px currentColor);
+  }
+
+  .pixel-btn:focus-visible {
+    outline: 3px solid rgba(0, 255, 245, 0.7);
+    outline-offset: 4px;
+  }
+
+  .game-card:focus-within {
+    box-shadow:
+      4px 4px 0px #000,
+      0 0 24px rgba(0,255,245,0.12);
+  }
+
+  /* Small pulse for header pixels */
+  .pixel-pulse {
+    animation: pixel-pulse 1.6s steps(2) infinite;
+  }
+
+  @keyframes pixel-pulse {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0.55; transform: translateY(-1px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scanline-overlay { animation: none !important; }
+    .js-reveal .retro-reveal { opacity: 1; transform: none; transition: none; }
+    .js-reveal .retro-reveal::before { display: none; }
+    .pixel-pulse { animation: none !important; }
   }
 
   /* Pixel button press effect */

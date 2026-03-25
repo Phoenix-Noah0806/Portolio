@@ -102,6 +102,39 @@ export default function App() {
     return () => window.removeEventListener("keydown", handleKonami);
   }, []);
 
+  // Reveal sections on scroll (subtle, professional)
+  useEffect(() => {
+    if (loading) return;
+
+    document.body.classList.add("js-reveal");
+    const sections = Array.from(document.querySelectorAll(".retro-reveal"));
+    if (!sections.length) return;
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") {
+      sections.forEach((el) => el.classList.add("is-revealed"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-revealed");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [loading]);
+
   return (
     <>
       {/* Loading Screen */}

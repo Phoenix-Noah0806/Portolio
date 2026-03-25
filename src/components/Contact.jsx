@@ -48,7 +48,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="section-container bg-retro-bg-light/30">
+    <section id="contact" className="section-container retro-reveal bg-retro-bg-light/30">
       <div className="max-w-3xl mx-auto">
         <SectionHeader level="06" title="Contact Me" color="purple" />
 

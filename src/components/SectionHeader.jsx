@@ -71,9 +71,9 @@ export default function SectionHeader({ level, title, color = "green" }) {
 
       {/* Decorative underline */}
       <div className="flex items-center justify-center gap-2 mt-4">
-        <span className={`w-4 h-1 ${c.bg}`}></span>
-        <span className={`w-2 h-1 ${c.bg} opacity-60`}></span>
-        <span className={`w-1 h-1 ${c.bg} opacity-30`}></span>
+        <span className={`w-4 h-1 ${c.bg} pixel-pulse`}></span>
+        <span className={`w-2 h-1 ${c.bg} opacity-60 pixel-pulse`} style={{ animationDelay: "120ms" }}></span>
+        <span className={`w-1 h-1 ${c.bg} opacity-30 pixel-pulse`} style={{ animationDelay: "240ms" }}></span>
       </div>
     </div>
   );

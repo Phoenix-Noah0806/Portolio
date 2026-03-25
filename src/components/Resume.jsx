@@ -34,7 +34,7 @@ export default function Resume() {
   };
 
   return (
-    <section id="resume" className="section-container">
+    <section id="resume" className="section-container retro-reveal">
       <div className="max-w-3xl mx-auto">
         <SectionHeader level="05" title="Resume" color="orange" />
 

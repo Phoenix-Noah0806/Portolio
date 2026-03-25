@@ -7,7 +7,7 @@ import { projects } from "../data/portfolioData";
  */
 export default function Projects() {
   return (
-    <section id="projects" className="section-container bg-retro-bg-light/30">
+    <section id="projects" className="section-container retro-reveal bg-retro-bg-light/30">
       <div className="max-w-5xl mx-auto">
         <SectionHeader level="02" title="Projects" color="cyan" />
 
@@ -19,7 +19,7 @@ export default function Projects() {
             >
               {/* Level unlocked badge */}
               <div className="flex items-center justify-between mb-3">
-                <span className="level-badge" style={{ borderColor: '#00fff5', color: '#00fff5' }}>
+                <span className="level-badge level-badge-anim" style={{ borderColor: '#00fff5', color: '#00fff5' }}>
                   ⚡ Stage {index + 1}
                 </span>
                 <span className="font-pixel text-[7px] text-retro-text-dim">

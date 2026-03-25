@@ -7,7 +7,7 @@ import { education, training } from "../data/portfolioData";
  */
 export default function Education() {
   return (
-    <section id="education" className="section-container">
+    <section id="education" className="section-container retro-reveal">
       <div className="max-w-4xl mx-auto">
         <SectionHeader level="03" title="Education" color="yellow" />
 
@@ -36,7 +36,7 @@ export default function Education() {
                       </p>
                     </div>
                   </div>
-                  <span className="level-badge" style={{ borderColor: '#ffe66d', color: '#ffe66d' }}>
+                  <span className="level-badge level-badge-anim" style={{ borderColor: '#ffe66d', color: '#ffe66d' }}>
                     🚩 {item.period}
                   </span>
                 </div>
@@ -70,7 +70,7 @@ export default function Education() {
                     </p>
                   </div>
                 </div>
-                <span className="level-badge" style={{ borderColor: '#ff8c42', color: '#ff8c42' }}>
+                <span className="level-badge level-badge-anim" style={{ borderColor: '#ff8c42', color: '#ff8c42' }}>
                   🚩 {training.period}
                 </span>
               </div>

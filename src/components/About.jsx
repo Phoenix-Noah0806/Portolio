@@ -66,7 +66,7 @@ export default function About() {
   );
 
   return (
-    <section id="about" className="section-container" ref={sectionRef}>
+    <section id="about" className="section-container retro-reveal" ref={sectionRef}>
       <div className="max-w-5xl mx-auto">
         <SectionHeader level="01" title="About Me" color="green" />
 
