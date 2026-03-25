@@ -341,6 +341,10 @@
 
 /* ===== UTILITY ADDITIONS ===== */
 @layer utilities {
+  .image-smooth {
+    image-rendering: auto;
+  }
+
   .text-shadow-green {
     text-shadow: 0 0 10px rgba(45,232,74,0.6), 0 0 30px rgba(45,232,74,0.3);
   }

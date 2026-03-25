@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { personalInfo } from "../data/portfolioData";
+import PixelButton from "./PixelButton";
 
 /**
  * Hero — Game Start Screen with pixel star background and "Press Start".
@@ -86,6 +87,18 @@ export default function Hero() {
         {/* Small pixel art controller */}
         <div className="text-5xl mb-6 animate-float">🕹️</div>
 
+        {/* Profile photo */}
+        <div className="mx-auto mb-6 w-fit pixel-border bg-retro-bg-light/60 backdrop-blur-sm p-2">
+          <div className="w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 overflow-hidden bg-retro-surface">
+            <img
+              src="/profile.jpg"
+              alt={personalInfo.name}
+              className="w-full h-full object-cover image-smooth"
+              decoding="async"
+            />
+          </div>
+        </div>
+
         {/* Subtitle */}
         <p className="font-pixel text-[9px] md:text-[11px] text-retro-cyan text-shadow-cyan tracking-widest mb-6 uppercase">
           Welcome Player — Insert Coin
@@ -139,6 +152,16 @@ export default function Hero() {
         <button onClick={scrollToAbout} className="pixel-btn text-sm">
           START
         </button>
+
+        {/* Social shortcuts */}
+        <div className="mt-5 flex items-center justify-center gap-3 flex-wrap">
+          <PixelButton href={personalInfo.github} variant="cyan" className="text-sm">
+            GITHUB
+          </PixelButton>
+          <PixelButton href={personalInfo.linkedin} variant="magenta" className="text-sm">
+            LINKEDIN
+          </PixelButton>
+        </div>
 
         {/* Scroll indicator */}
         <div className="mt-16 animate-float">

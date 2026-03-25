@@ -10,8 +10,8 @@ export const personalInfo = {
   titles: ["Full Stack Developer", "Data Analyst", "Software Developer"],
   email: "aayushmaan.jaiswal0308@gmail.com",
   phone: "+91-8736857339",
-  github: "https://github.com/aayushmaan",
-  linkedin: "https://www.linkedin.com/in/aayushmaan",
+  github: "https://github.com/Phoenix-Noah0806",
+  linkedin: "https://www.linkedin.com/in/aayushmaanjaiswal",
   tagline: "Building the web, one pixel at a time.",
   bio: "I'm a Computer Science Engineering student at Lovely Professional University with a passion for building full-stack web applications. I love solving complex problems, crafting clean UIs, and turning ideas into reality with code. When I'm not coding, I'm exploring new technologies and leveling up my skills.",
 };
